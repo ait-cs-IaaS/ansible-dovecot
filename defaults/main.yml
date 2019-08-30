@@ -1,0 +1,5 @@
+dovecot_packages:
+        - dovecot-core
+        - dovecot-common
+        - dovecot-imapd
+        - dovecot-lmtpd
