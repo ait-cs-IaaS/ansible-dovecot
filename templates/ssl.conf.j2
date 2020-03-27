@@ -9,7 +9,7 @@ ssl = {{ dovecot_ssl }}
 # dropping root privileges, so keep the key file unreadable by anyone but
 # root. Included doc/mkcert.sh can be used to easily generate self-signed
 # certificate, just make sure to update the domains in dovecot-openssl.cnf
-{% if dovecot_ssl is not 'no' %}
+{% if dovecot_ssl != 'no' %}
 ssl_cert = <{{ dovecot_ssl_cert }}
 ssl_key = <{{ dovecot_ssl_key }}
 
@@ -21,6 +21,7 @@ ssl_key = <{{ dovecot_ssl_key }}
 ssl_key_password = {{ dovecot_ssl_key_password }}
 {% elif dovecot_ssl_key_password_file is defined and dovecot_ssl_key_password_file %}
 ssl_key_password = <{{ dovecot_ssl_key_password_file }}
+{% endif %}
 {% endif %}
 
 # PEM encoded trusted certificate authority. Set this only if you intend to use
