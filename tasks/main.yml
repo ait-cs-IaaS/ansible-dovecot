@@ -2,3 +2,43 @@
   apt:
           name: "{{dovecot_packages}}"
           state: "latest"
+
+- name: Configure dovecot ssl
+  template:
+          src: "{{ dovecot_ssl_conf_template }}"
+          dest: "/etc/dovecot/conf.d/10-ssl.conf"
+          mode: "0655"
+          owner: "root"
+          group: "root"
+  tags: [config]
+  notify: restart dovecot
+
+- name: Add server ssl certificate
+  copy:
+    src: "{{ dovecot_ssl_cert_src }}"
+    dest: "{{ dovecot_ssl_cert }}"
+    owner: root
+    group: root
+    mode: "0644"
+  when: dovecot_ssl_cert_src is defined and dovecot_ssl_cert_src
+  notify: restart dovecot
+
+- name: Add server ssl certificate key
+  copy:
+    src: "{{ dovecot_ssl_key_src }}"
+    dest: "{{ dovecot_ssl_key }}"
+    owner: root
+    group: root
+    mode: "0600"
+  when: dovecot_ssl_key_src is defined and dovecot_ssl_key_src
+  notify: restart dovecot
+
+- name: Add server ssl certificate key password file
+  copy:
+    src: "{{ dovecot_ssl_key_password_file_src }}"
+    dest: "{{ dovecot_ssl_key_password_file }}"
+    owner: root
+    group: root
+    mode: "0600"
+  when: dovecot_ssl_key_password_file_src is defined and dovecot_ssl_key_password_file_src
+  notify: restart dovecot

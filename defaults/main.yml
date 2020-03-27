@@ -3,3 +3,14 @@ dovecot_packages:
         - dovecot-common
         - dovecot-imapd
         - dovecot-lmtpd
+
+dovecot_ssl_conf_template: ssl.conf.j2
+dovecot_ssl: "yes"
+
+dovecot_ssl_cert: /etc/dovecot/private/dovecot.pem
+dovecot_ssl_key: /etc/dovecot/private/dovecot.key
+
+# dovecot_ssl_cert_src: files/dovecot.crt
+# dovecot_ssl_key_src: files/dovecot.key
+# dovecot_ssl_key_password_file: /etc/dovecot/private/dovecot.pwd
+# dovecot_ssl_key_password_file_src: files/dovecot.pwd
