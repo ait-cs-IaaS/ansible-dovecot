@@ -14,7 +14,7 @@ dovecot_postfix_auth: no
 dovecot_maildir: ~/.mail
 # mbox or maildir
 dovecot_maildir_type: maildir
-dovecot_username_format: "%n"
+dovecot_username_format: "%Lu"
 dovecot_auth_mechanisms: plain
 dovecot_ssl_cert: /etc/dovecot/private/dovecot.pem
 dovecot_ssl_key: /etc/dovecot/private/dovecot.key
