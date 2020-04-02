@@ -7,11 +7,43 @@
   template:
           src: "{{ dovecot_ssl_conf_template }}"
           dest: "/etc/dovecot/conf.d/10-ssl.conf"
-          mode: "0655"
+          mode: "0644"
           owner: "root"
           group: "root"
   tags: [config]
   notify: restart dovecot
+
+- name: Configure dovecot mail
+  template:
+          src: "{{ dovecot_mail_conf_template }}"
+          dest: "/etc/dovecot/conf.d/10-mail.conf"
+          mode: "0644"
+          owner: "root"
+          group: "root"
+  tags: [config]
+  notify: restart dovecot
+
+
+- name: Configure dovecot master
+  template:
+          src: "{{ dovecot_master_conf_template }}"
+          dest: "/etc/dovecot/conf.d/10-master.conf"
+          mode: "0644"
+          owner: "root"
+          group: "root"
+  tags: [config]
+  notify: restart dovecot
+
+- name: Configure dovecot auth
+  template:
+          src: "{{ dovecot_auth_conf_template }}"
+          dest: "/etc/dovecot/conf.d/10-auth.conf"
+          mode: "0644"
+          owner: "root"
+          group: "root"
+  tags: [config]
+  notify: restart dovecot
+
 
 - name: Add server ssl certificate
   copy:

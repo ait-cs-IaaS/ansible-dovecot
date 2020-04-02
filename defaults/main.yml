@@ -5,8 +5,15 @@ dovecot_packages:
         - dovecot-lmtpd
 
 dovecot_ssl_conf_template: ssl.conf.j2
-dovecot_ssl: "yes"
+dovecot_mail_conf_template: mail.conf.j2
+dovecot_master_conf_template: master.conf.j2
+dovecot_auth_conf_template: auth.conf.j2
 
+dovecot_ssl: "yes"
+dovecot_postfix_auth: no
+dovecot_maildir: ~/.mail
+dovecot_username_format: "%Lu"
+dovecot_auth_mechanisms: plain
 dovecot_ssl_cert: /etc/dovecot/private/dovecot.pem
 dovecot_ssl_key: /etc/dovecot/private/dovecot.key
 
