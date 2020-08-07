@@ -40,5 +40,5 @@ dovecot_mailboxes:
         - name: Sent
           auto: create
           special_use: \Sent
-        - name: "Sent Messages"
+        - name: Sent Messages
           special_use: \Sent
