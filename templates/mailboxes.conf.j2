@@ -46,15 +46,15 @@
 namespace inbox {
 {% for mailbox in dovecot_mailboxes %}
   mailbox "{{ mailbox.name }}" {
-    {%- if mailbox.auto is defined -%}
+{% if mailbox.auto is defined %}
     auto = create
-    {%- endif -%}
-    {%- if mailbox.special_use is defined -%}
+{% endif %}
+{% if mailbox.special_use is defined %}
     special_use = {{ mailbox.special_use }}
-    {%- endif -%}
-    {%- if mailbox.comment is defined -%}
+{% endif %}
+{% if mailbox.comment is defined %}
     comment = {{ mailbox.comment }}
-    {%- endif -%}
+{% endif %}
   }
 {% endfor %}
   # If you have a virtual "All messages" mailbox:
