@@ -8,10 +8,12 @@ dovecot_ssl_conf_template: ssl.conf.j2
 dovecot_mail_conf_template: mail.conf.j2
 dovecot_master_conf_template: master.conf.j2
 dovecot_auth_conf_template: auth.conf.j2
+dovecot_mailbox_conf_template: mailboxes.conf.j2
 
 dovecot_ssl: "yes"
 dovecot_postfix_auth: no
 dovecot_maildir: ~/.mail
+
 # mbox or maildir
 dovecot_maildir_type: maildir
 dovecot_username_format: "%Lu"
@@ -23,3 +25,20 @@ dovecot_ssl_key: /etc/dovecot/private/dovecot.key
 # dovecot_ssl_key_src: files/dovecot.key
 # dovecot_ssl_key_password_file: /etc/dovecot/private/dovecot.pwd
 # dovecot_ssl_key_password_file_src: files/dovecot.pwd
+
+# mailboxes
+dovecot_mailboxes:
+        - name: Drafts
+          auto: create
+          special_use: \Drafts
+        - name: Junk
+          auto: create
+          special_use: \Junk
+        - name: Trash
+          auto: create
+          special_use: \Trash
+        - name: Sent
+          auto: create
+          special_use: \Sent
+        - name: "Sent Messages"
+          special_use: \Sent

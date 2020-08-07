@@ -44,6 +44,15 @@
   tags: [config]
   notify: restart dovecot
 
+- name: Configure dovecot mailboxes
+  template:
+          src: "{{ dovecot_mailbox_conf_template }}"
+          dest: "/etc/dovecot/conf.d/15-mailboxes.conf"
+          mode: "0644"
+          owner: "root"
+          group: "root"
+  tags: [config]
+  notify: restart dovecot
 
 - name: Add server ssl certificate
   copy:
