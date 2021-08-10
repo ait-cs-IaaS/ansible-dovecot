@@ -9,6 +9,7 @@ dovecot_mail_conf_template: mail.conf.j2
 dovecot_master_conf_template: master.conf.j2
 dovecot_auth_conf_template: auth.conf.j2
 dovecot_mailbox_conf_template: mailboxes.conf.j2
+dovecot_imap_conf_template: imap.conf.j2
 
 dovecot_ssl: "yes"
 dovecot_postfix_auth: no
@@ -20,6 +21,9 @@ dovecot_username_format: "%Lu"
 dovecot_auth_mechanisms: plain
 dovecot_ssl_cert: /etc/dovecot/private/dovecot.pem
 dovecot_ssl_key: /etc/dovecot/private/dovecot.key
+imap_process_limit: 500
+imap_client_limit: 5000
+imap_max_userip_connections: 50
 
 # dovecot_ssl_cert_src: files/dovecot.crt
 # dovecot_ssl_key_src: files/dovecot.key
