@@ -54,6 +54,16 @@
   tags: [config]
   notify: restart dovecot
 
+- name: Configure dovecot imap
+  template:
+          src: "{{ dovecot_imap_conf_template }}"
+          dest: "/etc/dovecot/conf.d/20-imap.conf"
+          mode: "0644"
+          owner: "root"
+          group: "root"
+  tags: [config]
+  notify: restart dovecot
+
 - name: Add server ssl certificate
   copy:
     src: "{{ dovecot_ssl_cert_src }}"
