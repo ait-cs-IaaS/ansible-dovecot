@@ -1,66 +1,67 @@
+---
 - name: install dovecot packages
   apt:
-          name: "{{dovecot_packages}}"
-          state: "latest"
+    name: "{{ dovecot_packages }}"
+    state: "present"
 
 - name: Configure dovecot ssl
   template:
-          src: "{{ dovecot_ssl_conf_template }}"
-          dest: "/etc/dovecot/conf.d/10-ssl.conf"
-          mode: "0644"
-          owner: "root"
-          group: "root"
+    src: "{{ dovecot_ssl_conf_template }}"
+    dest: "/etc/dovecot/conf.d/10-ssl.conf"
+    mode: "0644"
+    owner: "root"
+    group: "root"
   tags: [config]
   notify: restart dovecot
 
 - name: Configure dovecot mail
   template:
-          src: "{{ dovecot_mail_conf_template }}"
-          dest: "/etc/dovecot/conf.d/10-mail.conf"
-          mode: "0644"
-          owner: "root"
-          group: "root"
+    src: "{{ dovecot_mail_conf_template }}"
+    dest: "/etc/dovecot/conf.d/10-mail.conf"
+    mode: "0644"
+    owner: "root"
+    group: "root"
   tags: [config]
   notify: restart dovecot
 
 
 - name: Configure dovecot master
   template:
-          src: "{{ dovecot_master_conf_template }}"
-          dest: "/etc/dovecot/conf.d/10-master.conf"
-          mode: "0644"
-          owner: "root"
-          group: "root"
+    src: "{{ dovecot_master_conf_template }}"
+    dest: "/etc/dovecot/conf.d/10-master.conf"
+    mode: "0644"
+    owner: "root"
+    group: "root"
   tags: [config]
   notify: restart dovecot
 
 - name: Configure dovecot auth
   template:
-          src: "{{ dovecot_auth_conf_template }}"
-          dest: "/etc/dovecot/conf.d/10-auth.conf"
-          mode: "0644"
-          owner: "root"
-          group: "root"
+    src: "{{ dovecot_auth_conf_template }}"
+    dest: "/etc/dovecot/conf.d/10-auth.conf"
+    mode: "0644"
+    owner: "root"
+    group: "root"
   tags: [config]
   notify: restart dovecot
 
 - name: Configure dovecot mailboxes
   template:
-          src: "{{ dovecot_mailbox_conf_template }}"
-          dest: "/etc/dovecot/conf.d/15-mailboxes.conf"
-          mode: "0644"
-          owner: "root"
-          group: "root"
+    src: "{{ dovecot_mailbox_conf_template }}"
+    dest: "/etc/dovecot/conf.d/15-mailboxes.conf"
+    mode: "0644"
+    owner: "root"
+    group: "root"
   tags: [config]
   notify: restart dovecot
 
 - name: Configure dovecot imap
   template:
-          src: "{{ dovecot_imap_conf_template }}"
-          dest: "/etc/dovecot/conf.d/20-imap.conf"
-          mode: "0644"
-          owner: "root"
-          group: "root"
+    src: "{{ dovecot_imap_conf_template }}"
+    dest: "/etc/dovecot/conf.d/20-imap.conf"
+    mode: "0644"
+    owner: "root"
+    group: "root"
   tags: [config]
   notify: restart dovecot
 
