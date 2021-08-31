@@ -24,6 +24,7 @@ dovecot_ssl_key: /etc/dovecot/private/dovecot.key
 imap_process_limit: 500
 imap_client_limit: 5000
 imap_max_userip_connections: 50
+dovecot_username_translation: ""
 
 # dovecot_ssl_cert_src: files/dovecot.crt
 # dovecot_ssl_key_src: files/dovecot.key
