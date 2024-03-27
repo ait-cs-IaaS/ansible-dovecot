@@ -1,9 +1,9 @@
 ---
 dovecot_packages:
-        - dovecot-core
-        - dovecot-common
-        - dovecot-imapd
-        - dovecot-lmtpd
+  - dovecot-core
+  - dovecot-common
+  - dovecot-imapd
+  - dovecot-lmtpd
 
 dovecot_ssl_conf_template: ssl.conf.j2
 dovecot_mail_conf_template: mail.conf.j2
@@ -13,7 +13,7 @@ dovecot_mailbox_conf_template: mailboxes.conf.j2
 dovecot_imap_conf_template: imap.conf.j2
 
 dovecot_ssl: "yes"
-dovecot_postfix_auth: no
+dovecot_postfix_auth: false
 dovecot_postfix_lmtp: false
 dovecot_maildir: ~/.mail
 
@@ -35,17 +35,17 @@ dovecot_username_translation: ""
 
 # mailboxes
 dovecot_mailboxes:
-        - name: Drafts
-          auto: create
-          special_use: \Drafts
-        - name: Junk
-          auto: create
-          special_use: \Junk
-        - name: Trash
-          auto: create
-          special_use: \Trash
-        - name: Sent
-          auto: create
-          special_use: \Sent
-        - name: Sent Messages
-          special_use: \Sent
+  - name: Drafts
+    auto: create
+    special_use: \Drafts
+  - name: Junk
+    auto: create
+    special_use: \Junk
+  - name: Trash
+    auto: create
+    special_use: \Trash
+  - name: Sent
+    auto: create
+    special_use: \Sent
+  - name: Sent Messages
+    special_use: \Sent

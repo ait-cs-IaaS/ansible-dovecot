@@ -1,96 +1,95 @@
 ---
-- name: install dovecot packages
-  apt:
+- name: Install dovecot packages
+  ansible.builtin.apt:
     name: "{{ dovecot_packages }}"
-    state: "present"
+    state: present
 
 - name: Configure dovecot ssl
-  template:
+  ansible.builtin.template:
     src: "{{ dovecot_ssl_conf_template }}"
-    dest: "/etc/dovecot/conf.d/10-ssl.conf"
+    dest: /etc/dovecot/conf.d/10-ssl.conf
     mode: "0644"
-    owner: "root"
-    group: "root"
+    owner: root
+    group: root
   tags: [config]
-  notify: restart dovecot
+  notify: Restart dovecot
 
 - name: Configure dovecot mail
-  template:
+  ansible.builtin.template:
     src: "{{ dovecot_mail_conf_template }}"
-    dest: "/etc/dovecot/conf.d/10-mail.conf"
+    dest: /etc/dovecot/conf.d/10-mail.conf
     mode: "0644"
-    owner: "root"
-    group: "root"
+    owner: root
+    group: root
   tags: [config]
-  notify: restart dovecot
-
+  notify: Restart dovecot
 
 - name: Configure dovecot master
-  template:
+  ansible.builtin.template:
     src: "{{ dovecot_master_conf_template }}"
-    dest: "/etc/dovecot/conf.d/10-master.conf"
+    dest: /etc/dovecot/conf.d/10-master.conf
     mode: "0644"
-    owner: "root"
-    group: "root"
+    owner: root
+    group: root
   tags: [config]
-  notify: restart dovecot
+  notify: Restart dovecot
 
 - name: Configure dovecot auth
-  template:
+  ansible.builtin.template:
     src: "{{ dovecot_auth_conf_template }}"
-    dest: "/etc/dovecot/conf.d/10-auth.conf"
+    dest: /etc/dovecot/conf.d/10-auth.conf
     mode: "0644"
-    owner: "root"
-    group: "root"
+    owner: root
+    group: root
   tags: [config]
-  notify: restart dovecot
+  notify: Restart dovecot
 
 - name: Configure dovecot mailboxes
-  template:
+  ansible.builtin.template:
     src: "{{ dovecot_mailbox_conf_template }}"
-    dest: "/etc/dovecot/conf.d/15-mailboxes.conf"
+    dest: /etc/dovecot/conf.d/15-mailboxes.conf
     mode: "0644"
-    owner: "root"
-    group: "root"
+    owner: root
+    group: root
   tags: [config]
-  notify: restart dovecot
+  notify: Restart dovecot
 
 - name: Configure dovecot imap
-  template:
+  ansible.builtin.template:
     src: "{{ dovecot_imap_conf_template }}"
-    dest: "/etc/dovecot/conf.d/20-imap.conf"
+    dest: /etc/dovecot/conf.d/20-imap.conf
     mode: "0644"
-    owner: "root"
-    group: "root"
+    owner: root
+    group: root
   tags: [config]
-  notify: restart dovecot
+  notify: Restart dovecot
 
 - name: Add server ssl certificate
-  copy:
+  ansible.builtin.copy:
     src: "{{ dovecot_ssl_cert_src }}"
     dest: "{{ dovecot_ssl_cert }}"
     owner: root
     group: root
     mode: "0644"
   when: dovecot_ssl_cert_src is defined and dovecot_ssl_cert_src
-  notify: restart dovecot
+  notify: Restart dovecot
 
 - name: Add server ssl certificate key
-  copy:
+  ansible.builtin.copy:
     src: "{{ dovecot_ssl_key_src }}"
     dest: "{{ dovecot_ssl_key }}"
     owner: root
     group: root
     mode: "0600"
   when: dovecot_ssl_key_src is defined and dovecot_ssl_key_src
-  notify: restart dovecot
+  notify: Restart dovecot
 
 - name: Add server ssl certificate key password file
-  copy:
+  ansible.builtin.copy:
     src: "{{ dovecot_ssl_key_password_file_src }}"
     dest: "{{ dovecot_ssl_key_password_file }}"
     owner: root
     group: root
     mode: "0600"
   when: dovecot_ssl_key_password_file_src is defined and dovecot_ssl_key_password_file_src
-  notify: restart dovecot
+  notify: Restart dovecot
